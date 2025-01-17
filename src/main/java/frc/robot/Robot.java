@@ -79,7 +79,16 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    if(RobotContainer.m_CommandXboxController.a().getAsBoolean()){
+      RobotContainer.motor1.set(0.4);
+      RobotContainer.motor2.set(0.4);
+    }
+    else if(!RobotContainer.m_CommandXboxController.a().getAsBoolean()){
+      RobotContainer.motor1.set(0);
+      RobotContainer.motor2.set(0);
+    }
+  }
 
   @Override
   public void testInit() {

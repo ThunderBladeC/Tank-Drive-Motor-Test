@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final CommandXboxController m_CommandXboxController = new CommandXboxController(0);
+  public final static CommandXboxController m_CommandXboxController = new CommandXboxController(0);
   public static WPI_TalonSRX motor1 = new WPI_TalonSRX(0);
   public static WPI_TalonSRX motor2 = new WPI_TalonSRX(1);
   public static ExampleSubsystem mExampleSubsystem = new ExampleSubsystem();
@@ -33,19 +33,30 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureBindings();
-    motor1.set(0.4);
-    motor2.set(0.2);
+    // motor1.set(0.4);
+    // motor2.set(0.2);
   }
 
   private void configureBindings() {}
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
     return Autos.exampleAuto(mExampleSubsystem);
   }
 }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
