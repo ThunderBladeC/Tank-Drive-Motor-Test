@@ -23,27 +23,49 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final static CommandXboxController m_CommandXboxController = new CommandXboxController(0);
   public static WPI_TalonSRX motor1 = new WPI_TalonSRX(1);
-  public static WPI_TalonSRX motor2 = new WPI_TalonSRX(0);
-  public static WPI_TalonSRX motor3 = new WPI_TalonSRX(2);
-  public static WPI_TalonSRX motor4 = new WPI_TalonSRX(3);
+  public static WPI_TalonSRX motor2 = new WPI_TalonSRX(2);
+  public static WPI_TalonSRX motor3 = new WPI_TalonSRX(3);
+  public static WPI_TalonSRX motor4 = new WPI_TalonSRX(4);
   public static ExampleSubsystem mExampleSubsystem = new ExampleSubsystem();
 
   DifferentialDrive diffDrive; 
 
   public RobotContainer() {
+
+    motor2.follow(motor1);
+    motor4.follow(motor3);
+
     configureBindings();
+    
     // motor1.set(0.4);
     // motor2.set(0.2);
   }
 
   private void configureBindings() {
-    m_CommandXboxController.a().whileTrue(
-      Commands.run(() -> motor1.set(0.2))
+
+    m_CommandXboxController.y().whileTrue(
+      Commands.run(() -> motor1.set(0.4))
       .finallyDo(() -> motor1.set(0))
     );
-    m_CommandXboxController.b().whileTrue(
-      Commands.run(() -> motor1.set(-0.2))
+     m_CommandXboxController.y().whileTrue(
+      Commands.run(() -> motor3.set(-0.4))
+      .finallyDo(() -> motor3.set(0))
+    );
+    m_CommandXboxController.a().whileTrue(
+      Commands.run(() -> motor1.set(-0.4))
       .finallyDo(() -> motor1.set(0))
+    );
+    m_CommandXboxController.a().whileTrue(
+      Commands.run(() -> motor3.set(0.4))
+      .finallyDo(() -> motor3.set(0))
+    );
+    m_CommandXboxController.b().whileTrue(
+      Commands.run(() -> motor1.set(0.3))
+      .finallyDo(() -> motor1.set(0))
+    );
+      m_CommandXboxController.x().whileTrue(
+      Commands.run(() -> motor3.set(-0.3))
+      .finallyDo(() -> motor3.set(0))
     );
   }
 
